@@ -39,7 +39,7 @@ For easier implementation, be sure to get a LDO with the right pinout, from left
     <img src="img\HW_00.png" style="zoom:30%;" />
 
 1. Then, cut the VIN trace with a cutter.
-   <img src="img\HW_01.png" style="zoom:40%;" />
+   <img src="img\HW_01.png" style="zoom:20%;" />
 
 2. In the other side, cut the VBUS trace from coming to the MAX3421E.
    <img src="img\HW_02.png" style="zoom:50%;" />

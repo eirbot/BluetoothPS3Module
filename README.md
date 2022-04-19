@@ -36,7 +36,7 @@ For easier implementation, be sure to get a LDO with the right pinout, from left
 
 
 0. First, get the USB Host shield upside down.
-    <img src="img\HW_00.png" style="zoom:30%;" />
+    <img src="img\HW_00.png" width="200" />
 
 1. Then, cut the VIN trace with a cutter.
    <img src="img\HW_01.png" style="zoom:20%;" />

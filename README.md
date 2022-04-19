@@ -16,13 +16,14 @@ This repository will explain how to setup a small Bluetooth module to control ba
 
 To create a module, you will need some materials :
 
-- An Arduino Pro Mini **5V/16MHz** with an **ATMEGA328** (the ATMEGA128 doesn't have enough memory to carry the USB library). Like [this](https://www.aliexpress.com/item/1005001621723982.html) or [this](https://www.digikey.com/en/products/detail/sparkfun-electronics/DEV-11113/5140820).
+- An Arduino Pro Mini **5V, 16MHz** with an **ATMEGA328** (the ATMEGA128 doesn't have enough memory to carry the USB library). Like [this](https://www.aliexpress.com/item/1005001621723982.html) or [this](https://www.digikey.com/en/products/detail/sparkfun-electronics/DEV-11113/5140820).
 - A **USB Host Shield mini** 2.0, which can be plugged directly under an Arduino Pro Mini. Like [this](https://www.aliexpress.com/item/1005004123059904.html) or [this](https://www.amazon.com/1pcs-Mini-Host-Shield-Development/dp/B085X1MG5J/).
 - Some 2.54mm female pin header, to solder on the USB Host Shield (you will need x24 at most).
 - Some wire to bypass VBUS.
 - One **3.3V LDO**, preferably in TO-92 package, like a LE33CZ or L78L33.
 - One small Bluetooth dongle, like [this one](https://www.aliexpress.com/item/33002451753.html) (or any CSR 4.0 dongle). A non-exhaustive list can be found [here](https://github.com/felis/USB_Host_Shield_2.0/wiki/Bluetooth-dongles).
 - One FT232RL USB to TTL board, to program the Arduino Pro Mini, with some jumper wires.
+- A USB mini cable to connect to the FT232RL USB to TTL board.
 - A PS3 joystick controller. You can use a chinese one, like [this one](https://www.aliexpress.com/item/4001296810227.html) or [this one](https://www.amazon.fr/Molyhood-Playstation3-Bluetooth-Vibration-T%C3%A9l%C3%A9commande/dp/B07YKYZVMB/).
 
 
@@ -124,7 +125,7 @@ The software use [PlatformIO](https://platformio.org/) to download all necessary
    $ pip install platformio
    ```
 
-   Alternatively, you can use [VSCode](https://platformio.org/install/ide?install=vscode), which is officially support by PlatformIO.
+   Alternatively, you can use [VSCode](https://platformio.org/install/ide?install=vscode), which is officially supported by PlatformIO.
 
 1. Download this git repository and open a command prompt at the root folder, where the `platformio.ini` file is located.
 
@@ -140,7 +141,17 @@ The software use [PlatformIO](https://platformio.org/) to download all necessary
    $ pip run
    ```
 
-4. You can now connect the Arduino Pro Mini to your computer using a FT232RL USB to TTL board.
+4. Connect the Arduino Pro Mini to the FT232RL USB to TTL board.
+
+    <p float="center">
+      <img src="img\SW_01.png" width="70%" />
+    </p>
+
+5. Be sure to set the FT232RL USB to TTL board jumper to 5V before connecting to your computer.
+
+   <p float="center">
+     <img src="img\SW_03.png" width="70%" />
+   </p>
 
 5. Now, upload the program to the board :
 
@@ -151,75 +162,76 @@ The software use [PlatformIO](https://platformio.org/) to download all necessary
 6. Wait for the confirmation message :
 
     <details>
-      <summary>Spoiler warning</summary>
+      <summary>Upload logs</summary>
     
-        ```shell
-        $ pio run -t upload
-        Processing pro16MHzatmega328 (platform: atmelavr; board: pro16MHzatmega328; framework: arduino)
-        -------------------------------------------------------------------------------------------------------------------------------------------------------
-        Tool Manager: Installing platformio/tool-avrdude @ ~1.60300.0
-        Downloading  [####################################]  100%
-        Unpacking  [####################################]  100%
-        Tool Manager: tool-avrdude @ 1.60300.200527 has been installed!
-        Verbose mode can be enabled via `-v, --verbose` option
-        CONFIGURATION: https://docs.platformio.org/page/boards/atmelavr/pro16MHzatmega328.html
-        PLATFORM: Atmel AVR (3.4.0) > Arduino Pro or Pro Mini ATmega328 (5V, 16 MHz)
-        HARDWARE: ATMEGA328P 16MHz, 2KB RAM, 30KB Flash
-        DEBUG: Current (avr-stub) On-board (avr-stub, simavr)
-        PACKAGES:
-         - framework-arduino-avr 5.1.0
-         - tool-avrdude 1.60300.200527 (6.3.0)
-         - toolchain-atmelavr 1.70300.191015 (7.3.0)
-        LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
-        LDF Modes: Finder ~ chain, Compatibility ~ soft
-        Found 6 compatible libraries
-        Scanning dependencies...
-        Dependency Graph
-        |-- <PS3BT>
-        |   |-- <SPI> 1.0
-        Building in release mode
-        Checking size .pio\build\pro16MHzatmega328\firmware.elf
-        Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
-        RAM:   [=====     ]  51.0% (used 1044 bytes from 2048 bytes)
-        Flash: [======    ]  63.2% (used 19416 bytes from 30720 bytes)
-        Configuring upload protocol...
-        AVAILABLE: arduino
-        CURRENT: upload_protocol = arduino
-        Looking for upload port...
-        Auto-detected: COM4
-        Uploading .pio\build\pro16MHzatmega328\firmware.hex
-        
-        avrdude: AVR device initialized and ready to accept instructions
-        
-        Reading | ################################################## | 100% 0.01s
-        
-        avrdude: Device signature = 0x1e950f (probably m328p)
-        avrdude: reading input file ".pio\build\pro16MHzatmega328\firmware.hex"
-        avrdude: writing flash (19416 bytes):
-        
-        Writing | ################################################## | 100% 9.72s
-        
-        avrdude: 19416 bytes of flash written
-        avrdude: verifying flash memory against .pio\build\pro16MHzatmega328\firmware.hex:
-        avrdude: load data flash data from input file .pio\build\pro16MHzatmega328\firmware.hex:
-        avrdude: input file .pio\build\pro16MHzatmega328\firmware.hex contains 19416 bytes
-        avrdude: reading on-chip flash data:
-        
-        Reading | ################################################## | 100% 8.19s
-        
-        avrdude: verifying ...
-        avrdude: 19416 bytes of flash verified
-        
-        avrdude: safemode: Fuses OK (E:00, H:00, L:00)
-        
-        avrdude done.  Thank you.
-        
-        ============================================================ [SUCCESS] Took 29.57 seconds ============================================================
-        ```
-
+    
+    ```shell
+    $ pio run -t upload
+    Processing pro16MHzatmega328 (platform: atmelavr; board: pro16MHzatmega328; framework: arduino)
+    -------------------------------------------------------------------------------------------------------------------------------------------------------
+    Tool Manager: Installing platformio/tool-avrdude @ ~1.60300.0
+    Downloading  [####################################]  100%
+    Unpacking  [####################################]  100%
+    Tool Manager: tool-avrdude @ 1.60300.200527 has been installed!
+    Verbose mode can be enabled via `-v, --verbose` option
+    CONFIGURATION: https://docs.platformio.org/page/boards/atmelavr/pro16MHzatmega328.html
+    PLATFORM: Atmel AVR (3.4.0) > Arduino Pro or Pro Mini ATmega328 (5V, 16 MHz)
+    HARDWARE: ATMEGA328P 16MHz, 2KB RAM, 30KB Flash
+    DEBUG: Current (avr-stub) On-board (avr-stub, simavr)
+    PACKAGES:
+     - framework-arduino-avr 5.1.0
+     - tool-avrdude 1.60300.200527 (6.3.0)
+     - toolchain-atmelavr 1.70300.191015 (7.3.0)
+    LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+    LDF Modes: Finder ~ chain, Compatibility ~ soft
+    Found 6 compatible libraries
+    Scanning dependencies...
+    Dependency Graph
+    |-- <PS3BT>
+    |   |-- <SPI> 1.0
+    Building in release mode
+    Checking size .pio\build\pro16MHzatmega328\firmware.elf
+    Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+    RAM:   [=====     ]  51.0% (used 1044 bytes from 2048 bytes)
+    Flash: [======    ]  63.2% (used 19416 bytes from 30720 bytes)
+    Configuring upload protocol...
+    AVAILABLE: arduino
+    CURRENT: upload_protocol = arduino
+    Looking for upload port...
+    Auto-detected: COM4
+    Uploading .pio\build\pro16MHzatmega328\firmware.hex
+    
+    avrdude: AVR device initialized and ready to accept instructions
+    
+    Reading | ################################################## | 100% 0.01s
+    
+    avrdude: Device signature = 0x1e950f (probably m328p)
+    avrdude: reading input file ".pio\build\pro16MHzatmega328\firmware.hex"
+    avrdude: writing flash (19416 bytes):
+    
+    Writing | ################################################## | 100% 9.72s
+    
+    avrdude: 19416 bytes of flash written
+    avrdude: verifying flash memory against .pio\build\pro16MHzatmega328\firmware.hex:
+    avrdude: load data flash data from input file .pio\build\pro16MHzatmega328\firmware.hex:
+    avrdude: input file .pio\build\pro16MHzatmega328\firmware.hex contains 19416 bytes
+    avrdude: reading on-chip flash data:
+    
+    Reading | ################################################## | 100% 8.19s
+    
+    avrdude: verifying ...
+    avrdude: 19416 bytes of flash verified
+    
+    avrdude: safemode: Fuses OK (E:00, H:00, L:00)
+    
+    avrdude done.  Thank you.
+    
+    ============================================================ [SUCCESS] Took 29.57 seconds ============================================================
+    ```
+    
     </details>
 
-
+You can now disconnect the Ardunio Pro Mini from your computer, and plug it to the modified USB Host Shield.
 
 
 
@@ -260,6 +272,22 @@ The next step is to setup the dongle bluetooth. This step is necessary IF you wa
 
 
 
+## IV] Integration Setup
+
+Todo.
+
+For more information about the serial output of the Arduino Pro Mini, check `src/main.cpp` file.
+
+
+
+## TODO
+
+* Finish integration setup.
+* Fix bluetooth problem when sometime the Arduino Pro Mini has to be reset to "unlock" the Bluetooth dongle.
+* Update USB Host Shield library, and ideally use Platformio to download from the official repository instead of this current copy.
+
+
+
 ## Sources
 
 * USB Host shield library :
@@ -274,4 +302,5 @@ The next step is to setup the dongle bluetooth. This step is necessary IF you wa
   https://chome.nerpa.tech/chome_downloads/UHS_mini_10.pdf
 * Arduino pro mini schematic :
   https://www.arduino.cc/en/uploads/Main/Arduino-Pro-Mini-schematic.pdf
-
+* Eirbot Musics Playlists (especially [Eirboom](https://www.youtube.com/playlist?list=PLCQolDsR1jjFRk9cEoq9tnNmJ_i1eqMqh)) :
+  https://www.youtube.com/user/Eirbot/playlists

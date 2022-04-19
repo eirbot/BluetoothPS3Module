@@ -117,7 +117,7 @@ Now you can use the usb host shield with a 5V Arduino Pro Mini.
 
 ## II] Software Setup
 
-The software use [PlatformIO](https://platformio.org/) to download all necessary librairies, build the program, and upload to the arduino pro mini.
+The software project use [PlatformIO](https://platformio.org/) to download all necessary librairies, build the program, and upload to the arduino pro mini.
 
 0. First, install Platformio if not already done (you will need python 3) :
 
@@ -250,7 +250,7 @@ The next step is to setup the dongle bluetooth. This step is necessary IF you wa
      <img src="img\BT_01.png" width="50%" />
    </p>
    
-2. After 10 sec, unplug the Bluetooth dongle, and plug the PS3 controller instead (don't reset the module).
+2. After 10 sec, unplug the Bluetooth dongle, and plug the PS3 controller instead using a USB mini cable (don't reset the module).
    
    <p float="center">
      <img src="img\BT_02.png" width="50%" />

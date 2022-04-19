@@ -116,7 +116,113 @@ Now you can use the usb host shield with a 5V Arduino Pro Mini.
 
 ## II] Software Setup
 
-todo
+The software use [PlatformIO](https://platformio.org/) to download all necessary librairies, build the program, and upload to the arduino pro mini.
+
+0. First, install Platformio if not already done (you will need python 3) :
+
+   ```shell
+   $ pip install platformio
+   ```
+
+   Alternatively, you can use [VSCode](https://platformio.org/install/ide?install=vscode), which is officially support by PlatformIO.
+
+1. Download this git repository and open a command prompt at the root folder, where the `platformio.ini` file is located.
+
+2. First, init the project :
+
+   ```shell
+   $ pio init
+   ```
+
+3. Then, run the project, to build all the project files :
+
+   ```shell
+   $ pip run
+   ```
+
+4. You can now connect the Arduino Pro Mini to your computer using a FT232RL USB to TTL board.
+
+5. Now, upload the program to the board :
+
+   ```shell
+   $ pip run -t upload
+   ```
+
+6. Wait for the confirmation message :
+
+    <details>
+      <summary>Spoiler warning</summary>
+    
+        ```shell
+        $ pio run -t upload
+        Processing pro16MHzatmega328 (platform: atmelavr; board: pro16MHzatmega328; framework: arduino)
+        -------------------------------------------------------------------------------------------------------------------------------------------------------
+        Tool Manager: Installing platformio/tool-avrdude @ ~1.60300.0
+        Downloading  [####################################]  100%
+        Unpacking  [####################################]  100%
+        Tool Manager: tool-avrdude @ 1.60300.200527 has been installed!
+        Verbose mode can be enabled via `-v, --verbose` option
+        CONFIGURATION: https://docs.platformio.org/page/boards/atmelavr/pro16MHzatmega328.html
+        PLATFORM: Atmel AVR (3.4.0) > Arduino Pro or Pro Mini ATmega328 (5V, 16 MHz)
+        HARDWARE: ATMEGA328P 16MHz, 2KB RAM, 30KB Flash
+        DEBUG: Current (avr-stub) On-board (avr-stub, simavr)
+        PACKAGES:
+         - framework-arduino-avr 5.1.0
+         - tool-avrdude 1.60300.200527 (6.3.0)
+         - toolchain-atmelavr 1.70300.191015 (7.3.0)
+        LDF: Library Dependency Finder -> https://bit.ly/configure-pio-ldf
+        LDF Modes: Finder ~ chain, Compatibility ~ soft
+        Found 6 compatible libraries
+        Scanning dependencies...
+        Dependency Graph
+        |-- <PS3BT>
+        |   |-- <SPI> 1.0
+        Building in release mode
+        Checking size .pio\build\pro16MHzatmega328\firmware.elf
+        Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+        RAM:   [=====     ]  51.0% (used 1044 bytes from 2048 bytes)
+        Flash: [======    ]  63.2% (used 19416 bytes from 30720 bytes)
+        Configuring upload protocol...
+        AVAILABLE: arduino
+        CURRENT: upload_protocol = arduino
+        Looking for upload port...
+        Auto-detected: COM4
+        Uploading .pio\build\pro16MHzatmega328\firmware.hex
+        
+        avrdude: AVR device initialized and ready to accept instructions
+        
+        Reading | ################################################## | 100% 0.01s
+        
+        avrdude: Device signature = 0x1e950f (probably m328p)
+        avrdude: reading input file ".pio\build\pro16MHzatmega328\firmware.hex"
+        avrdude: writing flash (19416 bytes):
+        
+        Writing | ################################################## | 100% 9.72s
+        
+        avrdude: 19416 bytes of flash written
+        avrdude: verifying flash memory against .pio\build\pro16MHzatmega328\firmware.hex:
+        avrdude: load data flash data from input file .pio\build\pro16MHzatmega328\firmware.hex:
+        avrdude: input file .pio\build\pro16MHzatmega328\firmware.hex contains 19416 bytes
+        avrdude: reading on-chip flash data:
+        
+        Reading | ################################################## | 100% 8.19s
+        
+        avrdude: verifying ...
+        avrdude: 19416 bytes of flash verified
+        
+        avrdude: safemode: Fuses OK (E:00, H:00, L:00)
+        
+        avrdude done.  Thank you.
+        
+        ============================================================ [SUCCESS] Took 29.57 seconds ============================================================
+        ```
+
+    </details>
+
+
+
+
+
 
 ## III] Bluetooth Setup
 

@@ -87,7 +87,7 @@ For easier implementation, be sure to get a LDO with the right pinout, from left
    > Be sure the LDO you use has the right PINOUT ! From left to right : VOUT / GND / VIN
 
 6. Then you can solder VIN directly into the bypass wire.
-    
+   
     <p float="center">
       <img src="img\HW_08.png" width="60%" />
     </p>
@@ -97,13 +97,13 @@ For easier implementation, be sure to get a LDO with the right pinout, from left
     > Soldering directly in a capacitor is also not recommended, it is absolutely not IPC compliant. Keep in mind this is only for small DIY project.
     
 7. You can now place and solder the two 2.54mm headers rows.
-    
+   
     <p float="center">
       <img src="img\HW_09.png" width="50%" />
     </p>
     
 8. Last but not least, you can solder the other part of the bypass wire, directly into the VIN pin of the header (4th pin from bottom right).
-    
+   
     <p float="center">
       <img src="img\HW_10.png" width="20%" />
     </p>
@@ -151,4 +151,21 @@ The next step is to setup the dongle bluetooth. This step is necessary IF you wa
    <p float="center">
      <img src="img\BT_04.png" width="50%" />
    </p>
+
+
+
+## Sources
+
+* USB Host shield library :
+  * https://chome.nerpa.tech/mcu/usb-host-shield-library-version-2-0-released/#more-5449
+  * https://github.com/felis/USB_Host_Shield_2.0
+* USB Host shield hardware manual :
+  * https://chome.nerpa.tech/usb-host-shield-hardware-manual/
+  * https://www.pjrc.com/teensy/td_libs_USBHostShield.html
+* MAX3421E Datasheet :
+  https://datasheets.maximintegrated.com/en/ds/MAX3421E.pdf
+* Mini USB Host Shield Schematic (not the v2, but close enough) :
+  https://chome.nerpa.tech/chome_downloads/UHS_mini_10.pdf
+* Arduino pro mini schematic :
+  https://www.arduino.cc/en/uploads/Main/Arduino-Pro-Mini-schematic.pdf
 
